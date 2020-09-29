@@ -20,16 +20,18 @@ namespace DataBaseBoekenOefening
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadFormInfo();
-            lbBoeken.SelectedIndex = 1;
+            
         }
         private void LoadFormInfo()
         {
             using (Database_BoekenEntities ctx = new Database_BoekenEntities())
-            {              
+            {
+                lbBoeken.DataSource = null;
                 var query = ctx.Boekens.Select(x => x).ToList();
                 lbBoeken.DisplayMember = "Titel";
                 lbBoeken.ValueMember = "Id";
-                lbBoeken.DataSource = query;               
+                lbBoeken.DataSource = query;
+                lbBoeken.SelectedIndex = 0;
             }
         }
 
@@ -68,14 +70,28 @@ namespace DataBaseBoekenOefening
                
                 lTitel.Text = selected.Titel;
                 lScore.Text = selected.Score.ToString();
-                lPublicatie.Text = selected.Publicatie.ToString();               
+                DateTime publicatie = (DateTime)selected.Publicatie;
+                lPublicatie.Text = publicatie.ToString("dd/MM/yyyy");               
                 lUitgever.Text = BoekUitgever.Where(x => x.bu.Id == selected.Id).Select(x => x.u.Naam).FirstOrDefault();
                 var genres = BoekenGenres.Where(x => x.bg2.bu.bu.Id == selected.Id).Select(x => x.g.Genre1).ToList();
                 lbGenres.DataSource = genres;
                 lAPaginas.Text = selected.AantalPaginas.ToString();
                 var auteurNaam = BoekenAuteurs.Where(x => x.ba2.bu.bu.Id == selected.Id).Select(x => new { Naam = x.a.Voornaam + " " + x.a.Achternaam });
-                lAuteur.Text = auteurNaam.Select(x =>x.Naam).FirstOrDefault();
+                var auteursVanBoek = auteurNaam.Select(x => x.Naam).ToList();
+                lbAuteurs.DataSource = auteursVanBoek;
+                lbAuteurs.SelectedIndex = -1;
+                lbGenres.SelectedIndex = -1;
             }
+        }
+
+        private void btnToevoegen_Click(object sender, EventArgs e)
+        {
+            Toevoegen add = new Toevoegen();
+            if (add.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+            LoadFormInfo();
         }
     }
         

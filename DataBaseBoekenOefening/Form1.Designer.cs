@@ -42,8 +42,9 @@
             this.lTitel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.lAuteur = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.lbAuteurs = new System.Windows.Forms.ListBox();
+            this.btnToevoegen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBoeken
@@ -58,11 +59,14 @@
             // 
             // lbGenres
             // 
+            this.lbGenres.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.lbGenres.Enabled = false;
+            this.lbGenres.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbGenres.FormattingEnabled = true;
             this.lbGenres.ItemHeight = 20;
             this.lbGenres.Location = new System.Drawing.Point(761, 313);
             this.lbGenres.Name = "lbGenres";
-            this.lbGenres.Size = new System.Drawing.Size(245, 224);
+            this.lbGenres.Size = new System.Drawing.Size(245, 324);
             this.lbGenres.TabIndex = 2;
             // 
             // Titel
@@ -173,30 +177,43 @@
             this.label12.TabIndex = 14;
             this.label12.Text = "boeken";
             // 
-            // lAuteur
-            // 
-            this.lAuteur.AutoSize = true;
-            this.lAuteur.Location = new System.Drawing.Point(168, 550);
-            this.lAuteur.Name = "lAuteur";
-            this.lAuteur.Size = new System.Drawing.Size(51, 20);
-            this.lAuteur.TabIndex = 16;
-            this.lAuteur.Text = "label1";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(21, 550);
+            this.label13.Location = new System.Drawing.Point(20, 541);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 20);
+            this.label13.Size = new System.Drawing.Size(75, 20);
             this.label13.TabIndex = 15;
-            this.label13.Text = "Auteur";
+            this.label13.Text = "Auteur(s)";
+            // 
+            // lbAuteurs
+            // 
+            this.lbAuteurs.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.lbAuteurs.Enabled = false;
+            this.lbAuteurs.FormattingEnabled = true;
+            this.lbAuteurs.ItemHeight = 20;
+            this.lbAuteurs.Location = new System.Drawing.Point(171, 541);
+            this.lbAuteurs.Name = "lbAuteurs";
+            this.lbAuteurs.Size = new System.Drawing.Size(202, 104);
+            this.lbAuteurs.TabIndex = 17;
+            // 
+            // btnToevoegen
+            // 
+            this.btnToevoegen.Location = new System.Drawing.Point(171, 709);
+            this.btnToevoegen.Name = "btnToevoegen";
+            this.btnToevoegen.Size = new System.Drawing.Size(195, 76);
+            this.btnToevoegen.TabIndex = 18;
+            this.btnToevoegen.Text = "Toevoegen";
+            this.btnToevoegen.UseVisualStyleBackColor = true;
+            this.btnToevoegen.Click += new System.EventHandler(this.btnToevoegen_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 700);
-            this.Controls.Add(this.lAuteur);
+            this.ClientSize = new System.Drawing.Size(1094, 892);
+            this.Controls.Add(this.btnToevoegen);
+            this.Controls.Add(this.lbAuteurs);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -236,8 +253,9 @@
         private System.Windows.Forms.Label lTitel;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lAuteur;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ListBox lbAuteurs;
+        private System.Windows.Forms.Button btnToevoegen;
     }
 }
 
