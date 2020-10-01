@@ -173,6 +173,7 @@ namespace DataBaseBoekenOefening
                     ctx.SaveChanges();
                 }               
             }
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

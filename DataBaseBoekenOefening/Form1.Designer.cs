@@ -45,6 +45,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.lbAuteurs = new System.Windows.Forms.ListBox();
             this.btnToevoegen = new System.Windows.Forms.Button();
+            this.btnGenreToevoegen = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBoeken
@@ -204,15 +206,37 @@
             this.btnToevoegen.Name = "btnToevoegen";
             this.btnToevoegen.Size = new System.Drawing.Size(195, 76);
             this.btnToevoegen.TabIndex = 18;
-            this.btnToevoegen.Text = "Toevoegen";
+            this.btnToevoegen.Text = "Boek Toevoegen";
             this.btnToevoegen.UseVisualStyleBackColor = true;
             this.btnToevoegen.Click += new System.EventHandler(this.btnToevoegen_Click);
+            // 
+            // btnGenreToevoegen
+            // 
+            this.btnGenreToevoegen.Location = new System.Drawing.Point(761, 709);
+            this.btnGenreToevoegen.Name = "btnGenreToevoegen";
+            this.btnGenreToevoegen.Size = new System.Drawing.Size(195, 76);
+            this.btnGenreToevoegen.TabIndex = 19;
+            this.btnGenreToevoegen.Text = "Genre Toevoegen";
+            this.btnGenreToevoegen.UseVisualStyleBackColor = true;
+            this.btnGenreToevoegen.Click += new System.EventHandler(this.btnGenreToevoegen_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(400, 709);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(195, 76);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "selected Boek Verwijderen";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 892);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGenreToevoegen);
             this.Controls.Add(this.btnToevoegen);
             this.Controls.Add(this.lbAuteurs);
             this.Controls.Add(this.label13);
@@ -257,6 +281,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ListBox lbAuteurs;
         private System.Windows.Forms.Button btnToevoegen;
+        private System.Windows.Forms.Button btnGenreToevoegen;
+        private System.Windows.Forms.Button button1;
     }
 }
 

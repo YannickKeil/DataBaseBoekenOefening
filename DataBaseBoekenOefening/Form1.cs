@@ -101,6 +101,32 @@ namespace DataBaseBoekenOefening
         {
 
         }
+
+        private void btnGenreToevoegen_Click(object sender, EventArgs e)
+        {
+            GenreToevoegen addG = new GenreToevoegen();
+            if (addG.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (Database_BoekenEntities ctx = new Database_BoekenEntities())
+            {
+                if (lbBoeken.SelectedIndex >= 0)
+                {
+                    Boeken selected = (Boeken)lbBoeken.SelectedItem;
+                    ctx.BoekenAuteurs.RemoveRange(ctx.BoekenAuteurs.Where(ba => ba.BoekId == selected.Id));
+                    ctx.BoekenGenres.RemoveRange(ctx.BoekenGenres.Where(g => g.BoekId == selected.Id));
+                    ctx.Boekens.Remove(ctx.Boekens.Where(b => b.Id == selected.Id).FirstOrDefault());
+                    ctx.SaveChanges();
+                }
+            }
+            LoadFormInfo();
+        }
     }
         
 }
