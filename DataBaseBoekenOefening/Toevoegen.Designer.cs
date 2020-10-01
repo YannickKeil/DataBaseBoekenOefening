@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tbTitel = new System.Windows.Forms.TextBox();
             this.nudAPaginas = new System.Windows.Forms.NumericUpDown();
@@ -53,8 +54,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnToevoegenDB = new System.Windows.Forms.Button();
+            this.epErrors = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudAPaginas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epErrors)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -280,6 +283,10 @@
             this.btnToevoegenDB.UseVisualStyleBackColor = true;
             this.btnToevoegenDB.Click += new System.EventHandler(this.btnToevoegenDB_Click);
             // 
+            // epErrors
+            // 
+            this.epErrors.ContainerControl = this;
+            // 
             // Toevoegen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -315,6 +322,7 @@
             this.Load += new System.EventHandler(this.Toevoegen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAPaginas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epErrors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,5 +355,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnToevoegenDB;
+        private System.Windows.Forms.ErrorProvider epErrors;
     }
 }
