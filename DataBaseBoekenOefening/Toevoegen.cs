@@ -64,7 +64,8 @@ namespace DataBaseBoekenOefening
 
         private void lbAutANBoek_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbAutVNBoek.SelectedIndex = lbAutANBoek.SelectedIndex;
+            if (lbAutVNBoek.DataSource != null && lbAutANBoek.DataSource != null)
+                lbAutVNBoek.SelectedIndex = lbAutANBoek.SelectedIndex;
         }
 
         private void btnToevoegenAuteur_Click(object sender, EventArgs e)
@@ -90,13 +91,15 @@ namespace DataBaseBoekenOefening
 
         private void btnNaarRechts_Click(object sender, EventArgs e)
         {
-            if (GekozenGenres.Contains(lbAllGenres.SelectedItem))
-            { }
-            else
-            { 
-                GekozenGenres.Add(lbAllGenres.SelectedItem.ToString());
-                GekozenGenresId.Add((int)lbAllGenres.SelectedValue);
-                LoadListBoxGenres();
+            using (Database_BoekenEntities ctx = new Database_BoekenEntities())
+            {
+                if (!GekozenGenresId.Contains((int)lbAllGenres.SelectedValue))
+                {
+                    GekozenGenres.Add(ctx.Genres.Where(g=>g.Id == (int)lbAllGenres.SelectedValue).FirstOrDefault().Genre1);
+                    GekozenGenresId.Add((int)lbAllGenres.SelectedValue);
+                    LoadListBoxGenres();
+                    MessageBox.Show($"{ctx.Genres.Where(g => g.Id == (int)lbAllGenres.SelectedValue).FirstOrDefault().Genre1}{(int)lbAllGenres.SelectedValue}");
+                }
             }
             
             
@@ -122,7 +125,7 @@ namespace DataBaseBoekenOefening
             using (Database_BoekenEntities ctx = new Database_BoekenEntities())
             {
                 //kijkt of uitgever bestaat anders voegt hij hem toe
-                if (ctx.Uitgeverijens.Select(u => u.Naam.ToLower()).Contains(cbUitgever.Text.ToLower()))
+                if (!ctx.Uitgeverijens.Select(u => u.Naam.ToLower()).Contains(cbUitgever.Text.ToLower()))
                 {
                     ctx.Uitgeverijens.Add(new Uitgeverijen { Naam = cbUitgever.Text });
                     ctx.SaveChanges();
@@ -141,18 +144,25 @@ namespace DataBaseBoekenOefening
                 });
                 ctx.SaveChanges();
                 // zoekt de net toegevoegde boek 
-                var newBoek = ctx.Boekens.Where(b => b.Titel == tbTitel.Text && b.AantalPaginas == (int)nudAPaginas.Value && b.Score == (int)nudScore.Value && b.Publicatie == dtPublicatie.Value && b.UitgeverId == gekozenUitgever.Id).FirstOrDefault();
+                var newBoek = ctx.Boekens.Where(b => b.Titel == tbTitel.Text && b.AantalPaginas == (int)nudAPaginas.Value && b.Score == (int)nudScore.Value && b.UitgeverId == gekozenUitgever.Id).FirstOrDefault();
                 // loop voor alle auteurs te linken met de nieuwe boek 
                 for (int i = 0; i < AuteursVoornamen.Count; i++)
                 {
+                    string voornaamAut = AuteursVoornamen[i];
+                    string achternaamAut = AuteursAchternamen[i];
                     //kijken of de auteur bestaat anders voegtoe aan database
-                    if (ctx.Auteurs.Select(a => a.Voornaam.ToLower()).Contains(AuteursVoornamen[i].ToLower()) && ctx.Auteurs.Select(a => a.Achternaam.ToLower()).Contains(AuteursAchternamen[i].ToLower()))
+                    if (ctx.Auteurs.Select(a => a.Voornaam.ToLower()).Contains(voornaamAut.ToLower()) && ctx.Auteurs.Select(a => a.Achternaam.ToLower()).Contains(achternaamAut.ToLower()))
                     {
-                        ctx.Auteurs.Add(new Auteur { Voornaam = AuteursVoornamen[i], Achternaam = AuteursAchternamen[i] });
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{voornaamAut} {achternaamAut}");
+                        ctx.Auteurs.Add(new Auteur { Voornaam = voornaamAut, Achternaam = achternaamAut });
                         ctx.SaveChanges();
+
                     }
                     //id zoeken van de auteur daarna een link tussen deze auteur en boek leggen
-                    var gekozenAuteur = ctx.Auteurs.Where(a => a.Voornaam.ToLower() == AuteursVoornamen[i].ToLower() && a.Achternaam.ToLower() == AuteursAchternamen[i].ToLower()).FirstOrDefault();
+                    var gekozenAuteur = ctx.Auteurs.Where(a => a.Voornaam.ToLower() == voornaamAut.ToLower() && a.Achternaam.ToLower() == achternaamAut.ToLower()).FirstOrDefault();
                     ctx.BoekenAuteurs.Add(new BoekenAuteur { BoekId = newBoek.Id, AuteurId = gekozenAuteur.Id });
                     ctx.SaveChanges();
                 }

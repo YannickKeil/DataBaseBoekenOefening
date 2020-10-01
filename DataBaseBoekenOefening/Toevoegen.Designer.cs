@@ -79,6 +79,11 @@
             // nudAPaginas
             // 
             this.nudAPaginas.Location = new System.Drawing.Point(103, 165);
+            this.nudAPaginas.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nudAPaginas.Name = "nudAPaginas";
             this.nudAPaginas.Size = new System.Drawing.Size(120, 26);
             this.nudAPaginas.TabIndex = 2;
@@ -104,6 +109,11 @@
             // nudScore
             // 
             this.nudScore.Location = new System.Drawing.Point(103, 260);
+            this.nudScore.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.nudScore.Name = "nudScore";
             this.nudScore.Size = new System.Drawing.Size(120, 26);
             this.nudScore.TabIndex = 4;
