@@ -66,21 +66,24 @@ namespace DataBaseBoekenOefening
                     ba2 => ba2.ba.AuteurId,
                     a => a.Id,
                     (ba2, a) => new { ba2, a });
-                Boeken selected = (Boeken)lbBoeken.SelectedItem;
-               
-                lTitel.Text = selected.Titel;
-                lScore.Text = selected.Score.ToString();
-                DateTime publicatie = (DateTime)selected.Publicatie;
-                lPublicatie.Text = publicatie.ToString("dd/MM/yyyy");               
-                lUitgever.Text = BoekUitgever.Where(x => x.bu.Id == selected.Id).Select(x => x.u.Naam).FirstOrDefault();
-                var genres = BoekenGenres.Where(x => x.bg2.bu.bu.Id == selected.Id).Select(x => x.g.Genre1).ToList();
-                lbGenres.DataSource = genres;
-                lAPaginas.Text = selected.AantalPaginas.ToString();
-                var auteurNaam = BoekenAuteurs.Where(x => x.ba2.bu.bu.Id == selected.Id).Select(x => new { Naam = x.a.Voornaam + " " + x.a.Achternaam });
-                var auteursVanBoek = auteurNaam.Select(x => x.Naam).ToList();
-                lbAuteurs.DataSource = auteursVanBoek;
-                lbAuteurs.SelectedIndex = -1;
-                lbGenres.SelectedIndex = -1;
+                if (lbBoeken.SelectedIndex >= 0)
+                {
+                    Boeken selected = (Boeken)lbBoeken.SelectedItem;
+
+                    lTitel.Text = selected.Titel;
+                    lScore.Text = selected.Score.ToString();
+                    DateTime publicatie = (DateTime)selected.Publicatie;
+                    lPublicatie.Text = publicatie.ToString("dd/MM/yyyy");
+                    lUitgever.Text = BoekUitgever.Where(x => x.bu.Id == selected.Id).Select(x => x.u.Naam).FirstOrDefault();
+                    var genres = BoekenGenres.Where(x => x.bg2.bu.bu.Id == selected.Id).Select(x => x.g.Genre1).ToList();
+                    lbGenres.DataSource = genres;
+                    lAPaginas.Text = selected.AantalPaginas.ToString();
+                    var auteurNaam = BoekenAuteurs.Where(x => x.ba2.bu.bu.Id == selected.Id).Select(x => new { Naam = x.a.Voornaam + " " + x.a.Achternaam });
+                    var auteursVanBoek = auteurNaam.Select(x => x.Naam).ToList();
+                    lbAuteurs.DataSource = auteursVanBoek;
+                    lbAuteurs.SelectedIndex = -1;
+                    lbGenres.SelectedIndex = -1;
+                }
             }
         }
 
@@ -91,7 +94,12 @@ namespace DataBaseBoekenOefening
             {
 
             }
-            LoadFormInfo();
+            LoadFormInfo();            
+        }
+
+        private void lbAuteurs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
         

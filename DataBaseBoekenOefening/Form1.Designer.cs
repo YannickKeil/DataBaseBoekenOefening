@@ -196,6 +196,7 @@
             this.lbAuteurs.Name = "lbAuteurs";
             this.lbAuteurs.Size = new System.Drawing.Size(202, 104);
             this.lbAuteurs.TabIndex = 17;
+            this.lbAuteurs.SelectedIndexChanged += new System.EventHandler(this.lbAuteurs_SelectedIndexChanged);
             // 
             // btnToevoegen
             // 

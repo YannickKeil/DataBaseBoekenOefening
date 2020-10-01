@@ -43,12 +43,16 @@
             this.btnNaarRechts = new System.Windows.Forms.Button();
             this.btnNaarLinks = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbAuteursVoornamen = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.lbAuteursToevoegen = new System.Windows.Forms.ListBox();
+            this.cbAuteursAchternamen = new System.Windows.Forms.ComboBox();
+            this.lbAutVNBoek = new System.Windows.Forms.ListBox();
             this.btnVerwijderAuteur = new System.Windows.Forms.Button();
             this.btnToevoegenAuteur = new System.Windows.Forms.Button();
+            this.lbAutANBoek = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnToevoegenDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudAPaginas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScore)).BeginInit();
             this.SuspendLayout();
@@ -160,6 +164,7 @@
             this.btnNaarRechts.TabIndex = 12;
             this.btnNaarRechts.Text = "=>";
             this.btnNaarRechts.UseVisualStyleBackColor = true;
+            this.btnNaarRechts.Click += new System.EventHandler(this.btnNaarRechts_Click);
             // 
             // btnNaarLinks
             // 
@@ -169,49 +174,53 @@
             this.btnNaarLinks.TabIndex = 13;
             this.btnNaarLinks.Text = "<=";
             this.btnNaarLinks.UseVisualStyleBackColor = true;
+            this.btnNaarLinks.Click += new System.EventHandler(this.btnNaarLinks_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(100, 514);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 20);
+            this.label6.Size = new System.Drawing.Size(143, 20);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Auteur Voornaam";
+            this.label6.Text = "Auteurs Voornaam";
             // 
-            // comboBox1
+            // cbAuteursVoornamen
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(103, 550);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(252, 28);
-            this.comboBox1.TabIndex = 14;
+            this.cbAuteursVoornamen.FormattingEnabled = true;
+            this.cbAuteursVoornamen.Location = new System.Drawing.Point(103, 550);
+            this.cbAuteursVoornamen.Name = "cbAuteursVoornamen";
+            this.cbAuteursVoornamen.Size = new System.Drawing.Size(252, 28);
+            this.cbAuteursVoornamen.TabIndex = 14;
+            this.cbAuteursVoornamen.SelectedIndexChanged += new System.EventHandler(this.cbAuteursVoornamen_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(100, 597);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(148, 20);
+            this.label7.Size = new System.Drawing.Size(156, 20);
             this.label7.TabIndex = 17;
-            this.label7.Text = "Auteur Achternaam";
+            this.label7.Text = "Auteurs Achternaam";
             // 
-            // comboBox2
+            // cbAuteursAchternamen
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(101, 633);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(254, 28);
-            this.comboBox2.TabIndex = 16;
+            this.cbAuteursAchternamen.FormattingEnabled = true;
+            this.cbAuteursAchternamen.Location = new System.Drawing.Point(101, 633);
+            this.cbAuteursAchternamen.Name = "cbAuteursAchternamen";
+            this.cbAuteursAchternamen.Size = new System.Drawing.Size(254, 28);
+            this.cbAuteursAchternamen.TabIndex = 16;
+            this.cbAuteursAchternamen.SelectedIndexChanged += new System.EventHandler(this.cbAuteursAchternamen_SelectedIndexChanged);
             // 
-            // lbAuteursToevoegen
+            // lbAutVNBoek
             // 
-            this.lbAuteursToevoegen.FormattingEnabled = true;
-            this.lbAuteursToevoegen.ItemHeight = 20;
-            this.lbAuteursToevoegen.Location = new System.Drawing.Point(558, 557);
-            this.lbAuteursToevoegen.Name = "lbAuteursToevoegen";
-            this.lbAuteursToevoegen.Size = new System.Drawing.Size(254, 104);
-            this.lbAuteursToevoegen.TabIndex = 18;
+            this.lbAutVNBoek.FormattingEnabled = true;
+            this.lbAutVNBoek.ItemHeight = 20;
+            this.lbAutVNBoek.Location = new System.Drawing.Point(558, 557);
+            this.lbAutVNBoek.Name = "lbAutVNBoek";
+            this.lbAutVNBoek.Size = new System.Drawing.Size(254, 104);
+            this.lbAutVNBoek.TabIndex = 18;
+            this.lbAutVNBoek.SelectedIndexChanged += new System.EventHandler(this.lbAutVNBoek_SelectedIndexChanged);
             // 
             // btnVerwijderAuteur
             // 
@@ -221,6 +230,7 @@
             this.btnVerwijderAuteur.TabIndex = 20;
             this.btnVerwijderAuteur.Text = "<=";
             this.btnVerwijderAuteur.UseVisualStyleBackColor = true;
+            this.btnVerwijderAuteur.Click += new System.EventHandler(this.btnVerwijderAuteur_Click);
             // 
             // btnToevoegenAuteur
             // 
@@ -230,19 +240,62 @@
             this.btnToevoegenAuteur.TabIndex = 19;
             this.btnToevoegenAuteur.Text = "=>";
             this.btnToevoegenAuteur.UseVisualStyleBackColor = true;
+            this.btnToevoegenAuteur.Click += new System.EventHandler(this.btnToevoegenAuteur_Click);
+            // 
+            // lbAutANBoek
+            // 
+            this.lbAutANBoek.FormattingEnabled = true;
+            this.lbAutANBoek.ItemHeight = 20;
+            this.lbAutANBoek.Location = new System.Drawing.Point(935, 557);
+            this.lbAutANBoek.Name = "lbAutANBoek";
+            this.lbAutANBoek.Size = new System.Drawing.Size(254, 104);
+            this.lbAutANBoek.TabIndex = 21;
+            this.lbAutANBoek.SelectedIndexChanged += new System.EventHandler(this.lbAutANBoek_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(554, 514);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(192, 20);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Auteur(s) Voornaam boek";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(931, 514);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(205, 20);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Auteur(s) Achternaam boek";
+            // 
+            // btnToevoegenDB
+            // 
+            this.btnToevoegenDB.Location = new System.Drawing.Point(1339, 273);
+            this.btnToevoegenDB.Name = "btnToevoegenDB";
+            this.btnToevoegenDB.Size = new System.Drawing.Size(129, 74);
+            this.btnToevoegenDB.TabIndex = 24;
+            this.btnToevoegenDB.Text = "boek toevoegen database";
+            this.btnToevoegenDB.UseVisualStyleBackColor = true;
+            this.btnToevoegenDB.Click += new System.EventHandler(this.btnToevoegenDB_Click);
             // 
             // Toevoegen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1536, 692);
+            this.Controls.Add(this.btnToevoegenDB);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lbAutANBoek);
             this.Controls.Add(this.btnVerwijderAuteur);
             this.Controls.Add(this.btnToevoegenAuteur);
-            this.Controls.Add(this.lbAuteursToevoegen);
+            this.Controls.Add(this.lbAutVNBoek);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbAuteursAchternamen);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbAuteursVoornamen);
             this.Controls.Add(this.btnNaarLinks);
             this.Controls.Add(this.btnNaarRechts);
             this.Controls.Add(this.lbGenresToevoegen);
@@ -259,6 +312,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Toevoegen";
             this.Text = "Toevoegen";
+            this.Load += new System.EventHandler(this.Toevoegen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAPaginas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScore)).EndInit();
             this.ResumeLayout(false);
@@ -283,11 +337,15 @@
         private System.Windows.Forms.Button btnNaarRechts;
         private System.Windows.Forms.Button btnNaarLinks;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbAuteursVoornamen;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ListBox lbAuteursToevoegen;
+        private System.Windows.Forms.ComboBox cbAuteursAchternamen;
+        private System.Windows.Forms.ListBox lbAutVNBoek;
         private System.Windows.Forms.Button btnVerwijderAuteur;
         private System.Windows.Forms.Button btnToevoegenAuteur;
+        private System.Windows.Forms.ListBox lbAutANBoek;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnToevoegenDB;
     }
 }
