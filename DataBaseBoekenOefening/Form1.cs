@@ -39,13 +39,13 @@ namespace DataBaseBoekenOefening
         {
             using (Database_BoekenEntities ctx = new Database_BoekenEntities())
             {
-                
+
 
                 var BoekUitgever = ctx.Uitgeverijens
                     .Join(ctx.Boekens,
                     u => u.Id,
                     bu => bu.UitgeverId,
-                    (u, bu) => new { u, bu }).ToList();
+                    (u, bu) => new { u, bu });
 
                 var BoekenGenres = BoekUitgever
                     .Join(ctx.BoekenGenres,
@@ -124,6 +124,16 @@ namespace DataBaseBoekenOefening
                     ctx.Boekens.Remove(ctx.Boekens.Where(b => b.Id == selected.Id).FirstOrDefault());
                     ctx.SaveChanges();
                 }
+            }
+            LoadFormInfo();
+        }
+
+        private void btnBijwerken_Click(object sender, EventArgs e)
+        {
+            Boeken selected = (Boeken)lbBoeken.SelectedItem;
+            Toevoegen bijwerken = new Toevoegen(selected);
+            if (bijwerken.ShowDialog() == DialogResult.OK)
+            {                                   
             }
             LoadFormInfo();
         }

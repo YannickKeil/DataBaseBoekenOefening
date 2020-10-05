@@ -55,6 +55,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnToevoegenDB = new System.Windows.Forms.Button();
             this.epErrors = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Cancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudAPaginas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epErrors)).BeginInit();
@@ -297,11 +298,22 @@
             // 
             this.epErrors.ContainerControl = this;
             // 
+            // Cancel
+            // 
+            this.Cancel.Location = new System.Drawing.Point(1339, 370);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(129, 74);
+            this.Cancel.TabIndex = 26;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
             // Toevoegen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1536, 692);
+            this.Controls.Add(this.Cancel);
             this.Controls.Add(this.btnToevoegenDB);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -366,5 +378,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnToevoegenDB;
         private System.Windows.Forms.ErrorProvider epErrors;
+        private System.Windows.Forms.Button Cancel;
     }
 }
